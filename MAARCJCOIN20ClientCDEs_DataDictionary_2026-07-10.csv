@@ -1,0 +1,393 @@
+"Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
+study_id,demographics,,text,"Study ID",,,,,,y,,,,,,,
+age_years,demographics,AGE,text,"D1.  What is your current age in years?",,"Age in years",integer,1,120,,"[event-id]=""86473""",,,,,,
+birth_year,demographics,,text,"D1a.  What is your year of birth?
+
+(OPTIONAL)",,YYYY,integer,1920,2030,y,[event-id]='86473',,,,,,
+dob,demographics,,text,"D1b.  What is your date of birth?
+
+(OPTIONAL)",,MM-DD-YYYY,date_mdy,,,,[event-id]='86473',,,,,," @HIDEBUTTON"
+sex_at_birth,demographics,"SEX AT BIRTH",radio,"D2.  What sex were you assigned at birth, on your original birth certificate?","1, Female | 2, Male",,,,,,[event-id]='86473',y,,,,,
+race,demographics,"ETHNICITY/RACE:  MATCH NIH REPORTING",checkbox,"D3.  What is your race and/or ethnicity?  (Select all that apply.)","1, American Indian or Alaska Native | 2, Asian, Asian American, or Southeast Asian, including Chinese, Japanese, and others | 3, Black or African American | 4, Hispanic or Latino(a) or Latine/x | 5, Middle Eastern or North African | 6, Native Hawaiian or Other Pacific Islander | 7, White or Caucasian | 8, Something else (specify) {race_other}",,,,,,[event-id]='86473',y,,,,,
+race_other,demographics,,text,"D3other.  Specify other race and/or ethnicity.",,,,,,,"[race(8)] = '1' and [event-id]='86473'",y,,,,,
+ethnicity,demographics,,checkbox,"D3a.  Which ethnic group or groups do you identify as?  (Select all that apply.)
+
+(OPTIONAL)","1, Mexican, Mexican American, Mexicano(a), or Chicano(a) | 2, Puerto Rican | 3, Central or South American | 4, Cuban or Cuban American | 5, Dominican (from Dominican Republic) | 6, Something else (specify)  {ethnicity_other}",,,,,,"[event-id]=""86473""",,,,,,
+ethnicity_other,demographics,,text,"D3aother.  Specify other ethnic group(s).
+
+(OPTIONAL)",,,,,,,"[race(6)] = '1' and [event-id]='86473'",,,,,,
+marital_status,demographics,"MARITAL STATUS",radio,"D4.  What is your current marital status?","1, Married | 2, Living as married (with a romantic partner) | 3, Widowed | 4, Divorced | 5, Separated | 6, Never Married | 7, Something else (specify)  {marital_other}",,,,,,[event-id]='86473',,,,,,
+marital_other,demographics,,text,"D4other.  Specify other current marital status.",,,,,,,"[marital_status]='7' and [event-id]=""86473""",,,,,,
+education,demographics,EDUCATION,radio,"D5.  What is the highest grade or level of school you have completed or the highest degree you have received?","1, Did not complete high school; enter highest grade completed {educ_highest_grade} | 2, High school diploma, GED, or equivalent | 3, Some technical or college, but no certificate or degree | 4, Technical/trade/certificate school or program | 5, Associate's Degree (e.g., AA or AS) | 6, Bachelor's Degree (e.g., BA or BS) or higher",,,,,,,,,,,,
+educ_highest_grade,demographics,,text,"D5grade.  Highest grade completed",,,integer,0,12,,[education]='1',y,,,,,
+education_degrees,demographics,,checkbox,"D5a.  What degrees or certificates have you received?  (Select all that apply.)
+
+(OPTIONAL)","1, None | 2, High school diploma, GED, ABE, or equivalent | 3, Some technical or college, but no certificate or degree | 4, Technical/trade school | 5, Associate's degree (e.g., AA or AS) | 6, Bachelor's degree (e.g., BA or BS) or higher | 7, Some graduate school, but no degree | 8, Graduate school (Masters, Doctorate, or other) | 9, Something else (specify)  {education_degrees_other}",,,,,,,,,,,," @NONEOFTHEABOVE='1'"
+education_degrees_other,demographics,,text,"What other degree(s) or certificate(s) have you received?",,,,,,,[education_degrees(9)]='1',,,,,,
+housing,demographics,"HOUSING STATUS:  HOUSING SITUATION IN THE PAST 90 DAYS (OR DURING THE 90 DAYS PRIOR TO CURRENT DETENTION)",checkbox,"D6.  Where have you lived or slept during the past 90 days OR during the 90 days prior to the current detention?  (Select all that apply.)","1, Your own house or apartment | 2, Family/friend/partner's house or apartment | 3, Rented room (e.g., hotel, motel, or rooming house) | 4, Outdoors or in an informal location (e.g., tent, abandoned building, car or other vehicle, park, street) | 5, Shelter | 6, Hospital, skilled nursing facility, or other medical care setting | 7, Jail, prison, detention center, or juvenile hall | 8, Residential facility or institution (e.g., substance use disorder treatment facility or detox, HIV/AIDS housing, or group home) | 9, Sober living facility or recovery housing | 10, Somewhere else (specify)  {housing_other}",,,,,,,,,,,,
+housing_other,demographics,,text,"D6other.  Specify other housing.",,,,,,,[housing(10)]='1',,,,,,
+zipcode,demographics,,text,"D6a.  Participant ZIP code
+
+(OPTIONAL)",,,zipcode,,,,,,,,,,
+work_school,demographics,"WORK STATUS",checkbox,"D7.  Which of the following statements best describes your work or school situation in the past 90 days OR during the 90 days prior to the current detention.  (Select all that apply.)","1, Working full-time, 35 hours or more a week | 2, Working part-time, less than 35 hours a week | 3, Have a job where you are paid one day at a time (day labor) | 4, Have a job, but not at work because of treatment, extended illness, maternity leave, furlough or strike | 5, Have a job but not at work because it is seasonal work | 6, Unemployed or laid off and looking for work | 7, Unemployed or laid off and not looking for work | 8, Full-time homemaker (keeping house) | 9, In school or training | 10, In school or training, but not currently going to classes | 11, Retired | 12, In jail, prison or detention | 13, Too disabled for work (Please describe disability)  {work_disability} | 14, In the military | 15, Doing volunteer work | 16, Some other work situation (specify)  {work_other}",,,,,,,y,,,,,
+work_disability,demographics,,text,"D7disability.  Please describe disability.",,,,,,,[work_school(13)]='1',y,,,,,
+work_other,demographics,,text,"D7other.  Please describe other work situation.",,,,,,,[work_school(16)]='1',y,,,,,
+insurance,demographics,INSURANCE,checkbox,"D8.  What type(s) of health insurance or health care plan do you currently have or did you have prior to entering jail or prison?  (Select all that apply.)","1, I don't have health insurance | 2, Employer or union plan | 3, Private plan purchased directly (not through employer or government) | 4, Medicare (federal program for people 65+ or with certain disabilities) | 5, Medicaid (state/federal program based on income or disability) | 6, Military or veterans' health care (e.g., TRICARE, VA, CHAMP-VA) | 7, Indian Health Service | 8, Marketplace or state-sponsored health plan (""Obamacare,"" Affordable Care Act exchange) | 9, Other (specify)  {insurance_other}",,,,,,,,,,,," @NONEOFTHEABOVE='1'"
+insurance_other,demographics,,text,"D8other.  Specify other health insurance.",,,,,,,"[insurance(9)] = '1'",,,,,,
+insurance_days,demographics,,text,"<div class=""rich-text-field-label""><p>D8a.  During the past 90 days OR during the 90 days prior to the current detention, on how many days did you have any of these kinds of insurance?  (Number of days)</p> <p> </p> <p>(OPTIONAL)</p></div>",,"Number of days (out of 90 days)",integer,0,90,,[insurance]<>'1',,,,,,
+insurance_coverage,demographics,,checkbox,"D8b.  Which of the following did you have coverage for?  (Select all that apply.)
+
+(OPTIONAL)","1, Medical (doctor, hospital, emergency care) | 2, Dental | 3, Vision | 4, Extra cash/limited benefit plan (e.g., fixed cash benefit like Aflac) | 5, Other (specify)  {insurance_coverage_other}",,,,,,[insurance_days]>'0',,,,,,
+insurance_coverage_other,demographics,,text,"Specify what you had insurance coverage for.",,,,,,,[insurance_coverage(5)]='1',,,,,,
+children_under18,demographics,"CAREGIVER STATUS",radio,"D9.  How many children do you have who are under 18 years old?  Please count any biological, foster, or adopted children, or children you are raising as a step-parent.  Please include children even if they are not living with you.","0, 0 | 1, 1 | 2, 2 | 3, 3 | 4, 4 | 5, 5 | 6, 6 or more children",,,,,,,,,,,,
+caretaker,demographics,,radio,"D10.  Are you the caretaker for one or more children...?  (Optional stem endings include:  before your current legal involvement, before your current incarceration.)","1, Yes | 0, No",,,,,,,,,,,,
+transportation,demographics,"TRANSPORT:  WHAT TYPES OF TRANSPORT DO YOU USUALLY USE?",checkbox,"D11.  During the past 90 days OR during the 90 days prior to the current detention, what modes of transportation do you usually use?  (Select all that apply.)
+
+(OPTIONAL)","1, I drive myself | 2, Family or friend drives me | 3, Transportation provided by a program or service | 4, Bus | 5, Subway, light rail, or other train system | 6, Taxi/rideshare | 7, Bike or scooter | 8, Walk | 9, Other (describe)  {transportation_other}",,,,,,,,,,,,
+transportation_other,demographics,,text,"Describe other mode(s) of transportation.",,,,,,,[transportation(9)]='1',,,,,,
+days_controlled_env,substance_use,"DAYS IN CONTROLLED ENVIRONMENT",text,"S1.  During the past 90 days OR during the 90 days prior to the current detention, on how many days have you been in a jail, hospital or other place where you could not use opioids, stimulants, alcohol, or other drugs?",,"Number of days",integer,0,90,,,,,,,,
+recency_header,substance_use,"USE:  RECENCY OF 6 DSM-5 DRUG CLASSES AND PAST 90 DAYS FREQUENCY OF ABSTINENCE",descriptive,"<div class=""blue"">The next questions (S1a-S1f) are about use of alcohol and other drugs. Alcohol includes beer, wine, whiskey, gin, scotch, tequila, rum or mixed drinks. ""Other drugs"" include a) cannabis, b) other street drugs like crack, heroin, PCP, or poppers, c) inhalants like glue or gasoline or d) any non-medical use of prescription-type drugs (not prescription, more or longer than recommended, in combination with other things). In parentheses are other common names used for each type of substance, including medications. Brand names of medications have their first letter capitalized.
+
+If you used multiple drugs from the same category at different times, please select the timeframe for when you most recently used a drug from that category.",,,,,,,,,,,,,
+lastuse_alcohol,substance_use,"When was the last time that you used...",radio,"S1a.  ...any kind of alcohol, including beer, wine, or mixed drinks (beer, gin, rum, scotch, tequila, whiskey, wine, or mixed drinks)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,y,,,lastuse,,
+lastuse_cannabis,substance_use,,radio,"S1b.  ...cannabis, hashish, blunts, or THC (edibles, herb, joints, reefer, weed, including medical cannabis, code K2 or artificial marijuana under ""other"")?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,y,,,lastuse,,
+lastuse_stimulant,substance_use,,radio,"S1c.  ...cocaine, methamphetamine, amphetamine, or other stimulants (such as Adderall, Aptensio, atomoxetihne, Concerta, crack, Biphetamine, Benzedrine, Daytrana, Desoxyn, Dexedrine, dextroamphetamine, ecstacy, Focalin, lisdexamfetamine, MDMA, methylphenidate, Quillichew, Quillivant, Ritalin, Strattera, Vyvase)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,y,,,lastuse,,
+lastuse_opioids,substance_use,,radio,"S1d.  ...any kind of heroin, fentanyl, or other opioids including prescription medication (such as buprenorphine, codeine, crystal, Darvocet, Darvon, Demerol, Desoxyn, Dilaudid, Dolophine, glass, ice, Karachi, methadone, methedrine, morphine, Norco, Opana, opium, OxyContin, Oxymorphone, Oxys, Percocet, Percodan, Propoxyphene, Suboxone, Talwin, Tylenol with codeine, Vicodin, Zohyrdo)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,y,,,lastuse,,
+lastuse_downers,substance_use,,radio,"S1e.  ...benzodiazepines or other downers, barbituates, sedatives, or antianxiety drugs (such as Ativan, alprazolam, Byfavo, chlordiazepoxide, clonazepam, Dalmane, dexmedetomidine, diazepam, Doral, Doriden, estazolam, Elrodorm, flurazepam, flunitrazepam, GBL/GHB, Halcion, Klonopin, Librax, Librium, liquid ecstasy, lorazepam, medetomidine, methaqualone, Meprobamate, midazolam, Miltown, Niravam, Noxyron, oxazepam, phenobarbital, Placidyl, ProSom, quazepam, Quaalude, remimazolam, Restoril, Rohypnol, secobarbital, Secobarbital, Seconal, Serax, Sopo, temazepam, triazolam, Tuinal, Valium, Xanax, xylazine)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,y,,,lastuse,,
+lastuse_otherdrug,substance_use,,radio,"S1f.  ...hallucinogens, inhalants, designer or any other drug that has not been mentioned?  (Describe below.)   [If you used multiple other drugs at different times, please indicate the most recent episode.]","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,y,,,lastuse,,
+lastuse_otherdrug_specify,substance_use,,text,"S1f1.  Specify other drug(s) used.",,,,,,,[lastuse_otherdrug]<>'0',y,,,,,
+abstinence,substance_use,,text,"S2aa.  During the past 90 days OR during the 90 days prior to the current detention, on how many days were you abstinent from any kind of opioid, stimulant, alcohol or other drugs?  (Probe if 90.)
+
+<font color=""blue"">Note:  Skip if ALL of S1a - S1f are ""Never.""",,"Number of days (out of 90 days)",integer,0,90,,,,,,,,
+gain_weekly,substance_use,"SUD SEVERITY
+
+GAIN SUBSTANCE DISORDER SCREENER (SDScr):  RECENCY OF 5 SYMPTOMS
+
+The following questions are about common psychological, behavioral, and personal difficulties. These concerns or symptoms are considered meaningful if they last for two or more weeks, occur repeatedly, interfere with your daily responsibilities, or leave you feeling unable to continue.  Select one of the following options: within the past 30 days, more than 30 days ago, or never.",radio,"S2a.  When was the last time that you used alcohol or other drugs weekly or more often (at least once per week, 5+/30 days, 13+/90 days)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,,,,gain,,
+gain_sick,substance_use,,radio,"S2b.  When was the last time that you spent a lot of time either getting alcohol or other drugs, using alcohol or other drugs, or recovering from the effects of alcohol or other drugs (e.g., feeling sick, detoxing)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,,,,gain,,
+gain_problems,substance_use,,radio,"S2c.  When was the last time that you kept using alcohol or other drugs even though it was causing social problems, leading to fights, arguments with family, friends, employers, or getting you into trouble with other people (such as law enforcement, police, probation, or social worker)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,,,,gain,,
+gain_reduce,substance_use,,radio,"S2d.  When was the last time that your use of alcohol or other drugs caused you to give up or reduce your involvement in activities at work, school, home, or social events?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,,,,gain,,
+gain_withdrawal,substance_use,,radio,"S2e.  When was the last time that you had withdrawal problems from alcohol or other drugs like shaky hands, restless legs, throwing up, stomach problems, having trouble sitting still or sleeping, seizures, or you used any alcohol or other drugs to stop being sick or avoid withdrawal problems?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,,,,gain,,
+overdose,substance_use,OVERDOSE,radio,"S2f.  When was the last time that you experienced an overdose or poisoning?  By ""overdose,"" we mean a time when you lost consciousness and someone had to do something to bring you back (for example, with naloxone, also known as Narcan, mouth-to-mouth resuscitation, or in the emergency department)?","2, The past 30 days | 1, More than 30 days ago | 0, Never",,,,,,,,,,,,
+overdose_times,substance_use,,text,"S2f1.  During the last 90 days OR during the 90 days prior to the start of your current detention, how many times did you experience an overdose or poisoning? By ""overdose,"" we mean a time when you lost consciousness and someone had to do something to bring you back (for example, with naloxone, also known as Narcan, mouth-to-mouth resuscitation, or in the emergency department)?  (Confirm if more than 6 times.)",,"Number of times",integer,0,90,,"[overdose]='1' or [overdose]='2'",,,,,,
+drugs_before_od,substance_use,,checkbox,"S3.  What drugs did you knowingly use when you had your most recent overdose experience?  Include those that led to the overdose and anything else you were using.  (Select all that apply.) 
+
+(OPTIONAL)","1, Fentanyl (e.g., F, Fent, China White, Apache) | 2, Heroin (e.g., Black Tar, Chiva, H, Smack) | 3, Prescription opioids prescribed to you | 4, Prescription opioids that were not prescribed to you (e.g., Oxy, Percs, Vikes, Blues, M30s, Roxies) | 5, Prescription stimulants prescribed to you (e.g., Adderall, Ritalin) | 6, Non-prescription stimulants including methamphetamines, amphetamines, or other forms of speed (e.g., Crystal, Ice, Glass, Crank, Meth, Chalk, Tina) | 7, Crack or other forms of cocaine (e.g., Blow, Coke, Rock) | 8, Benzodiazepines (e.g., Xanax, Valium, Ativan, Klonopin), or other anti-anxiety drugs or tranquilizers (e.g., Bars, Benzos, Downers, Footballs, Ladders) | 9, Marijuana | 10, Alcohol | 11, Xylazine (e.g., Tranq, Zombie Drug, Sleep-Cut) | 12, Hallucinogens (ketamine, LSD, PCP, MDMA, others; e.g., Special K, Acid, Angel Dust, Molly, Ecstasy, Shrooms, DMT) | 13, Something else:  {drugs_before_od_other}",,,,,,[overdose_times]>0,,,,,,
+drugs_before_od_other,substance_use,,text,"S3a.  Specify other drugs taken prior to overdose.",,,,,,,[drugs_before_od(13)]='1',,,,,,
+drugs_didnt_know,substance_use,,checkbox,"S4.  When you had your most recent overdose experience, did you find out afterwards that you had used other drugs without knowing it?  Please indicate which drugs, if any, you used without knowing you had used them.  (Select all that apply.) 
+
+(OPTIONAL)","0, I did not use any drugs without knowing it | 1, Fentanyl (e.g., F, Fent, China White, Apache) | 2, Heroin (e.g., Black Tar, Chiva, H, Smack) | 3, Prescription opioids prescribed to you | 4, Prescription opioids that were not prescribed to you (e.g., Oxy, Percs, Vikes, Blues, M30s, Roxies) | 5, Prescription stimulants prescribed to you (e.g., Adderall, Ritalin) | 6, Non-prescription stimulants including methamphetamines, amphetamines, or other forms of speed (e.g., Crystal, Ice, Glass, Crank, Meth, Chalk, Tina) | 7, Crack or other forms of cocaine (e.g., Blow, Coke, Rock) | 8, Benzodiazepines (e.g., Xanax, Valium, Ativan, Klonopin), or other anti-anxiety drugs or tranquilizers (e.g., Bars, Benzos, Downers, Footballs, Ladders) | 9, Marijuana | 10, Alcohol | 11, Xylazine (e.g., Tranq, Zombie Drug, Sleep-Cut) | 12, Hallucinogens (ketamine, LSD, PCP, MDMA, others; e.g., Special K, Acid, Angel Dust, Molly, Ecstasy, Shrooms, DMT) | 13, Something else:  {drugs_didnt_know_other}",,,,,,[overdose_times]>0,,,,,,
+drugs_didnt_know_other,substance_use,,text,"S4a.  Specify other drugs taken without you knowing it.",,,,,,,[drugs_didnt_know(13)]='1',,,,,,
+lifethreat_stimulant,substance_use,,text,"S5.  During the past 90 days OR during the 90 days prior to the start of your current detention, how many times did you experience extreme and/or unexpected mental or physical effects from using cocaine, methamphetamine, or other stimulant drugs that felt life-threatening (even if you didn't seek care)?  
+
+Symptoms may include chest pain, racing heart, nausea or vomiting, extreme sweating or high temperature, convulsions, seizures, multiple days without sleep, cardiac arrest, or stroke.  Mental health effects may include extreme anxiety, paranoia, or fear; hallucinations; delusions, feelings of persecution; and feeling stuck or frozen. 
+
+(OPTIONAL)",,"Number of times",integer,,,,,,,,,,
+drugs_before_experience,substance_use,,checkbox,"S6.  What drugs did you knowingly use when you had your most recent experience?  Include those that led to the experience and anything else you were using.  (Select all that apply.) 
+
+(OPTIONAL)","1, Fentanyl (e.g., F, Fent, China White, Apache) | 2, Heroin (e.g., Black Tar, Chiva, H, Smack) | 3, Prescription opioids prescribed to you | 4, Prescription opioids that were not prescribed to you (e.g., Oxy, Percs, Vikes, Blues, M30s, Roxies) | 5, Prescription stimulants prescribed to you (e.g., Adderall, Ritalin) | 6, Non-prescription stimulants including methamphetamines, amphetamines, or other forms of speed (e.g., Crystal, Ice, Glass, Crank, Meth, Chalk, Tina) | 7, Crack or other forms of cocaine (e.g., Blow, Coke, Rock) | 8, Benzodiazepines (e.g., Xanax, Valium, Ativan, Klonopin), or other anti-anxiety drugs or tranquilizers (e.g., Bars, Benzos, Downers, Footballs, Ladders) | 9, Marijuana | 10, Alcohol | 11, Xylazine (e.g., Tranq, Zombie Drug, Sleep-Cut) | 12, Hallucinogens (ketamine, LSD, PCP, MDMA, others; e.g., Special K, Acid, Angel Dust, Molly, Ecstasy, Shrooms, DMT) | 13, Something else:  {drugs_before_exp_other}",,,,,,[lifethreat_stimulant]>0,,,,,,
+drugs_before_exp_other,substance_use,,text,"S6a.  What other drugs did you knowingly use when you had your most recent experience?",,,,,,,[drugs_before_experience(13)]='1',,,,,,
+drugs_unk_experience,substance_use,,checkbox,"S7.  When you had your most recent experience, did you find out afterwards that you had used other drugs without knowing it? Please indicate which drugs, if any, you used without knowing you had used them. (Select all that apply.) ​
+
+(OPTIONAL)","1, Fentanyl (e.g., F, Fent, China White, Apache) | 2, Heroin (e.g., Black Tar, Chiva, H, Smack) | 3, Prescription opioids prescribed to you | 4, Prescription opioids that were not prescribed to you (e.g., Oxy, Percs, Vikes, Blues, M30s, Roxies) | 5, Prescription stimulants prescribed to you (e.g., Adderall, Ritalin) | 6, Non-prescription stimulants including methamphetamines, amphetamines, or other forms of speed (e.g., Crystal, Ice, Glass, Crank, Meth, Chalk, Tina) | 7, Crack or other forms of cocaine (e.g., Blow, Coke, Rock) | 8, Benzodiazepines (e.g., Xanax, Valium, Ativan, Klonopin), or other anti-anxiety drugs or tranquilizers (e.g., Bars, Benzos, Downers, Footballs, Ladders) | 9, Marijuana | 10, Alcohol | 11, Xylazine (e.g., Tranq, Zombie Drug, Sleep-Cut) | 12, Hallucinogens (ketamine, LSD, PCP, MDMA, others; e.g., Special K, Acid, Angel Dust, Molly, Ecstasy, Shrooms, DMT) | 13, Something else:  {drugs_unk_exp_other}",,,,,,[lifethreat_stimulant]>0,,,,,,
+drugs_unk_exp_other,substance_use,,text,"S7a.  What other drugs did you find out afterwards you had used without knowing it?",,,,,,,[drugs_unk_experience(13)]='1',,,,,,
+justice_header,justice_involvement,,descriptive,"<div class=""blue"">ILLEGAL ACTIVITY
+
+Tracking illegal activity is crucial for policy relevance. This is particularly true for violent crime, which is typically the focus of criminal-legal policy and public concern. Importantly, self-reported criminal activity is a far more sensitive measure of behavioral change than arrest records alone, given that individuals are generally arrested for only a fraction of crimes committed (< 1 in 10). Furthermore, capturing the type and frequency of criminal activity is critical for economic evaluations, as there is wide variation in the extent to which different types of crime lead to an arrest, conviction, incarceration, and costs to the victims.  Combined, these costs are often orders of magnitude higher than those associated with healthcare resource utilization. Thus, including these measures greatly increases the likelihood of demonstrating economic value for interventions that effectively reduce criminal activity.",,,,,,,,,,,,,
+legal_involvement,justice_involvement,"LEGAL SYSTEM INVOLVEMENT
+
+The following questions are about your involvement, if any, with the criminal legal system.",checkbox,"J1.  In your lifetime, have you ever had the following types of involvement with the criminal legal system?  (Select all that apply.)","0, No/None | 1, Deflection program to avoid or reduce involvement | 2, Arrest | 3, Diversion, drug, family, juvenile, mental health, veterans, homelessness or other specialty court | 4, Regular adult court | 5, Probation | 6, Parole | 7, Other community supervision | 8, House arrest | 9, Electronic monitoring | 10, Detention or jail, including pre-trial and sentenced stays | 11, Prison | 12, Other (Describe) {legal_involvement_other}",,,,,,,,,,,," @NONEOFTHEABOVE='0'"
+legal_involvement_other,justice_involvement,,text,"Describe other involvement with criminal legal system.",,,,,,,[legal_involvement(12)]='1',,,,,,
+legal_inv90,justice_involvement,,checkbox,"J1a.  In the past 90 days OR during the 90 days prior to the start of your current detention, have you ever had the following types of involvement with the criminal legal system?  (Select all that apply.)","0, No/None | 1, Deflection program to avoid or reduce involvement | 2, Arrest | 3, Diversion, drug, family, juvenile, mental health, veterans, homelessness or other specialty court | 4, Regular adult court | 5, Probation | 6, Parole | 7, Other community supervision | 8, House arrest | 9, Electronic monitoring | 10, Detention or jail, including pre-trial and sentenced stays | 11, Prison | 12, Other (Describe) {legal_inv90_other}",,,,,,,,,,,," @NONEOFTHEABOVE='0'"
+legal_inv90_other,justice_involvement,,text,"Describe other involvement with criminal legal system.",,,,,,,[legal_inv90(12)]='1',,,,,,
+arrests,justice_involvement,ARRESTS,text,"J2.  During the past 90 days OR during the 90 days prior to the start of your current detention, how many times have you been arrested and booked?",,"Number of times arrested and booked",integer,,,,,,,,,,
+felony_yn,justice_involvement,,radio,"J2a.  Were you charged with a felony (such as assault, battery, carjacking, dealing, DUI, forgery, manslaughter, rape, robbery, shoplifting, vehicle theft, or other crimes that ""can"" be punished by more than one year in prison)?
+
+(OPTIONAL)
+","0, No | 1, Yes",,,,,,[arrests]>0,,,,,,
+elec_monitor_days,justice_involvement,"SERVICE
+
+J3.  During the past 90 days OR during the 90 days prior to the start of your current detention, how many days have you been...",text,"J3a.  ...on electronic monitoring?",,"Number of days",integer,0,90,,,y,,,,,
+house_arrest_days,justice_involvement,,text,"J3b.  ...on house arrest?",,"Number of days",integer,0,90,,,y,,,,,
+jail_days,justice_involvement,,text,"J3c.  ...in jail or detention?",,"Number of days",integer,0,90,,,y,,,,,
+prison_days,justice_involvement,,text,"J3d.  ...in prison?",,"Number of days",integer,0,90,,,y,,,,,
+parole_days,justice_involvement,,text,"J3e.  ...on parole?",,"Number of days",integer,0,90,,,y,,,,,
+supervision_days,justice_involvement,,text,"J3f.  ...on other community supervision?  (Describe.)  {supervision_days_other}",,"Number of days",integer,0,90,,,y,,,,,
+supervision_days_other,justice_involvement,,text,"J3eother.  Describe other community supervision.",,,,,,,[supervision_days]>0,,,,,,
+violations_days,justice_involvement,,text,"J3g.  ...had violations, warning, or sanctions from probation, parole or other community supervision?",,"Number of days",integer,0,90,,,y,,,,,
+criminal_charges,justice_involvement,"CRIMINAL CHARGES",radio,"J4.  In the past 12 months, were criminal charges filed against you in any court?","0, No | 1, Yes",,,,,,,,,,,,
+criminal_outcomes,justice_involvement,,checkbox,"J5.  What were the outcomes of your most recent criminal case in the past 12 months?  (Select all that apply.)
+
+(OPTIONAL)","1, Charges dismissed | 2, Diversion or deferred prosecution | 3, Pled guilty | 4, Found guilty (convicted) | 5, Found not guilty (acquitted) | 6, Case still pending / continued | 7, Other (specify) {criminal_outcomes_other}",,,,,,[criminal_charges]='1',,,,,,
+criminal_outcomes_other,justice_involvement,,text,"J5other.  Specify outcome(s) of most recent criminal charges in past 12 months.",,,,,,,[criminal_outcomes(7)]='1',,,,,,
+civil_involvement,justice_involvement,"SERVICE:  COURT INVOLVEMENT",checkbox,"J6.  In the past 12 months, did you have any of the following involvement in civil court (for example, debt collection, eviction, foreclosure, or small claims)?  (Select all that apply.)
+
+(OPTIONAL)
+","1, Sued by another person or organization | 2, Filed a case against another person or organization | 3, Other type of civil case involvement (specify) {civil_involvement_other} | 4, None of the above",,,,,,,,,,,," @NONEOFTHEABOVE='4'"
+civil_involvement_other,justice_involvement,,text,"J6other.  Describe other type of civil court involvement.
+
+(OPTIONAL)",,,,,,,[civil_involvement(3)]='1',,,,,,
+civil_court_times,justice_involvement,,text,"J7.  Approximately how many times have you had to appear in civil court over the past 12 months?
+
+(OPTIONAL)
+",,"Number of times",integer,,,,[civil_involvement(4)]<>'1',,,,,,
+specialty_court,justice_involvement,"SPECIALTY COURT
+
+Note:  Substitute the term ""specialty"" court with state specific terminology like problem solving court, recovery court, or hybrid court.",radio,"J8.  Have you ever been offered or participated in a specialty court program like drug court, mental health court, veterans court, tribal wellness, juvenile court, or another specialized court program?
+
+(OPTIONAL)
+","1, Yes, offered but did not participate | 2, Yes, participated | 3, No",,,,,,,,,,,,
+specialty_type,justice_involvement,,checkbox,"J9.  What type of specialty court program did you participate in?  (Select all that apply.)
+
+(OPTIONAL)
+","1, Adult drug court or recovery court | 2, Mental health court | 3, Driving Under the Influence (DUI) | 4, Family/Dependency | 5, Tribal Wellness | 6, Juvenile | 7, Veterans | 8, Other (specify)  {specialty_court_other}",,,,,,[specialty_court]='2',,,,,,
+specialty_court_other,justice_involvement,,text,"J9other.  Describe type of specialty court.",,,,,,,[specialty_type(8)]='1',,,,,,
+specialty_complete,justice_involvement,,radio,"J10.  Did you complete or graduate from the specialty court program in which you participated?
+
+(OPTIONAL)
+","1, Yes, I completed or graduated | 2, No, I did not complete or graduate | 3, I am currently enrolled in the program",,,,,,[specialty_court]='2',,,,,,
+specialty_jail,justice_involvement,,radio,"J11.  While you were in the court program, were you ever put in jail or prison as part of the specialty court program? (For example, were you incarcerated as a sanction or while you waited for treatment placement?)
+
+(OPTIONAL)
+","1, Yes | 0, No",,,,,,[specialty_court]='2',,,,,,
+specialty_jail_months,justice_involvement,,text,"J12.  About how long were you in jail or prison during the specialty court program?  (Months)
+
+(OPTIONAL)",,Months,number,,,,[specialty_jail]='1',,,,,,
+deflection_exp_header,justice_involvement,"DEFLECTION INTERCEPT",descriptive,"<div class=""green"">EXPERIENCE",,,,,,,,,,,,,
+deflection_offer,justice_involvement,,radio,"J13.  <u>Being Offered Help Instead of Arrest</u>: In the past 12 months, during previous encounters with police or emergency responders, did anyone OFFER to connect you to non-emergency services right away instead of arresting or charging you when they could have done so? (For example, calling a program for you, arranging a ride or taking you to a place that services are delivered, or having you speak to a social worker, counselor, or case manager immediately.)
+
+(OPTIONAL)
+","1, Yes | 0, No",,,,,,,,,,,,
+deflection_who_header,justice_involvement,,descriptive,"<div class=""green"">RESPONDER TYPE",,,,,,,,,,,,,
+deflection_who,justice_involvement,,checkbox,"J14.  <u>Who Offered Help Instead of Arrest</u>: In the past 12 months, who has offered to connect you to non-emergency services instead of arresting you or charging you when they could have done so?  (For example, giving you a card, phone number, appointment, or referring you to treatment right away.  Select all that apply.)
+
+(OPTIONAL)
+","1, Police officer | 2, Emergency medical staff or fire department staff | 3, Alternative responder | 4, Co-responder team (police + an alternative responder) | 5, Court / judge / probation officer | 6, Community organization | 7, Other (specify)  {deflection_who_other}",,,,,,[deflection_offer]='1',,,,,,
+deflection_who_other,justice_involvement,,text,"J14other.  Who offered help instead of arrest?",,,,,,,[deflection_who(7)]='1',,,,,,
+deflection_accept_header,justice_involvement,,descriptive,"<div class=""green"">ACCEPTING HELP",,,,,,,,,,,,,
+deflection_accept,justice_involvement,,radio,"J15.  <u>Accepting Help Instead of Arrest</u>: In the past 12 months, during previous encounters with police or emergency responders, did you ACCEPT their offer to connect you to non-emergency services right away instead of arresting or charging you when they could have done so?  (For example, calling a program for you, arranging a ride or taking you to a place that services are delivered, or having you speak to a social worker, counselor, or case manager immediately.)
+
+(OPTIONAL)
+","1, Yes | 0, No",,,,,,[deflection_offer]='1',,,,,,
+deflection_recd_header,justice_involvement,,descriptive,"<div class=""green"">SERVICES RECEIVED",,,,,,,,,,,,,
+deflection_received,justice_involvement,,checkbox,"J16.  <u>Services You Received</u>: Thinking about your current or most recent experience getting help after being offered services, what did you receive?  (Select all that apply.)
+
+(OPTIONAL)
+","1, Case management | 2, Drug treatment | 3, Mental health services | 4, Medical care | 5, Housing assistance | 6, Employment assistance | 7, Food / meals | 8, Bathrooms / showers | 9, Drop-in center | 10, Peer / navigator support | 11, Sobering center | 12, Medication for withdrawal management | 13, I did not receive any services | 14, Other (specify)  {deflection_received_other}",,,,,,[deflection_accept]='1',,,,,," @NONEOFTHEABOVE='13'"
+deflection_received_other,justice_involvement,,text,"J16other.  Specify services received.",,,,,,,[deflection_received(14)]='1',,,,,,
+deflection_will_header,justice_involvement,,descriptive,"<div class=""green"">WILLINGNESS TO RECEIVE",,,,,,,,,,,,,
+deflection_police,justice_involvement,"J17.  If you needed help accessing services (e.g., drug treatment, shelter, etc.), how likely would you be to accept a referral to treatment or other services if they were offered by the following people?
+
+(OPTIONAL)",radio,"J17a.  Police","4, Very Likely | 3, Somewhat Likely | 2, Somewhat Unlikely | 1, Very Unlikely",,,,,,,,,,deflection,,
+deflection_ems,justice_involvement,,radio,"J17b.  Emergency medical staff or fire department staff","4, Very Likely | 3, Somewhat Likely | 2, Somewhat Unlikely | 1, Very Unlikely",,,,,,,,,,deflection,,
+deflection_coresponder,justice_involvement,,radio,"J17c.  Co-responder team: A team that involves the police paired with another non-police professional, like community paramedics, mental health professionals, social workers, street outreach, etc.","4, Very Likely | 3, Somewhat Likely | 2, Somewhat Unlikely | 1, Very Unlikely",,,,,,,,,,deflection,,
+deflection_alternative,justice_involvement,,radio,"J17d.  Alternative responder (community paramedics, street outreach, mental health clinicians, social workers, peer support specialists, etc.)  without police present","4, Very Likely | 3, Somewhat Likely | 2, Somewhat Unlikely | 1, Very Unlikely",,,,,,,,,,deflection,,
+deflection_court,justice_involvement,,radio,"J17e.  Court, judge, probation officer","4, Very Likely | 3, Somewhat Likely | 2, Somewhat Unlikely | 1, Very Unlikely",,,,,,,,,,deflection,,
+deflection_community,justice_involvement,,radio,"J17f.  Community-based organization staff","4, Very Likely | 3, Somewhat Likely | 2, Somewhat Unlikely | 1, Very Unlikely",,,,,,,,,,deflection,,
+deflection_trust_header,justice_involvement,,descriptive,"<div class=""green"">TRUST IN POLICE FOR DEFLECTION",,,,,,,,,,,,,
+deflection_trust,justice_involvement,,radio,"J18.  <u>Trust in Police for Deflection</u>: Do you trust police in your community to offer people help and services instead of arrest when they are authorized to do so?
+
+(OPTIONAL)
+","1, Yes, definitely | 2, Yes, somewhat | 3, No, not really | 4, No, not at all",,,,,,,,,,,,
+deflection_aware_header,justice_involvement,,descriptive,"<div class=""green"">AWARENESS OF DEFLECTION",,,,,,,,,,,,,
+deflection_aware,justice_involvement,,radio,"J19.  <u>Awareness of Deflection</u>: Are you aware of any programs or services that the police in your community can offer instead of arrest?
+
+(OPTIONAL)
+","1, Yes | 0, No",,,,,,,,,,,,
+utilization_header,healthcare_utilization,,descriptive,"<div class=""blue"">Healthcare Resource Utilization
+
+Concrete measures of healthcare resource utilization are important for contextualizing differences in findings between intervention and control arms (e.g., helps account for alternative sources of treatment effects & rule out alternative hypotheses).  Quantifying utilization in standardized units (e.g., days, distinct visits) allows utilization to be mapped onto unit costs from billing/Medicaid data for economic evaluations, including determining the extent to which downstream savings offset the cost of the intervention.",,,,,,,,,,,,,
+treatment,healthcare_utilization,"LIFETIME TYPES OF SUD TREATMENT",checkbox,"U1.  In your lifetime, have you ever received any of the following treatments or other services for opioid, stimulant, alcohol or other drug use disorder?  (Select all that apply.)
+
+(OPTIONAL)","0, No prior treatment or service for substance use disorder. | 1, Medication to assist with detox or treatment (specify below) | 2, Inpatient Detoxification | 3, Outpatient or Ambulatory Detoxification | 4, Residential or Inpatient treatment (beyond detox) | 5, Intensive Outpatient Treatment | 6, Outpatient Treatment (specify below) | 7, Contingency management, motivational incentives, or rewards for achieving treatment goals | 8, Smartphone or other digital therapeutics | 9, Recovery home, sober living, or sanctuary housing | 10, Assistance from a peer recovery worker or case manager | 11, 12 step, peer support, or other mutual aid help | 12, Other (specify) {treatment_other}",,,,,,,,,,,," @NONEOFTHEABOVE='0'"
+treatment_meds,healthcare_utilization,,checkbox,"U1a.  Specify medication(s) taken to assist with detox or treatment.
+
+(OPTIONAL)","1, Buprenorphine (e.g., Suboxone, Subutex, BRIXADI, Sublocade) | 2, Naltrexone (e.g., Vivitrol) | 3, Methadone | 4, Other (specify)  {treatment_meds_other}",,,,,,[treatment(1)]='1',,,,,,
+treatment_meds_other,healthcare_utilization,,text,"U1aother.  Specify other medication(s) taken to assist with detox or treatment.
+
+(OPTIONAL)",,,,,,,[treatment_meds(4)]='1',,,,,,
+treatment_outpt,healthcare_utilization,,checkbox,"U1b.  Specify type(s) of outpatient treatment.
+
+(OPTIONAL)","1, Individual or one-on-one counseling | 2, Group counseling | 3, Family counseling | 4, Telehealth or phone based care | 5, Other",,,,,,[treatment(6)]='1',,,,,,
+treatment_other,healthcare_utilization,,text,"U1other.  Specify other treatment(s) or service(s) provided for opioid, stimulant, alcohol or other drug use disorder.
+
+(OPTIONAL)",,,,,,,[treatment(12)]='1',,,,,,
+hospital,healthcare_utilization,"Core Utilization:  Non-study medical and other services (NMOS)",radio,"U2.  During the past 90 days (OR during the 90 days prior to the start of your current detention), have you been to a hospital or an emergency room for any reason?","1, Yes | 0, No",,,,,,,,,,,,
+hospital_header,healthcare_utilization,,descriptive,"<div class=""green"">During the past 90 days (OR during the 90 days prior to the start of your current detention), how many...",,,,,,,,,,,,,
+er_times,healthcare_utilization,,text,"U2a.  ...<i>times</i> have you had to go to an emergency room without being admitted to the hospital?",,"Number of times",integer,,,,[hospital]='1',y,,,,,
+detox_nights,healthcare_utilization,,text,"U2b.  ...<i>nights</i> were you in a hospital detoxification program for your alcohol and other drug use?  (If more than one detox, across all episodes.)",,"Number of nights (out of 90)",integer,0,90,,[hospital]='1',y,,,,,
+hospital_nights,healthcare_utilization,,text,"U2c.  ...<i>nights</i> were you in a hospital for any reason other than detoxification? ",,"Number of nights (out of 90)",integer,0,90,,[hospital]='1',y,,,,,
+treatment_facility,healthcare_utilization,,radio,"U3.  During the past 90 days (OR during the 90 days prior to the start of your current detention), other than a hospital, have you stayed overnight in a treatment facility? 
+
+(Probe: such as a residential treatment program for alcohol, drug use, or mental health; or a rehabilitation facility for your physical health) ","1, Yes | 0, No",,,,,,,,,,,,
+tx_header,healthcare_utilization,,descriptive,"<div class=""green"">During the past 90 days (OR during the 90 days prior to the start of your current detention), how many...",,,,,,,,,,,,,
+tx_alcohol_nights,healthcare_utilization,,text,"U3a.  ...<i>nights</i> were you in a residential treatment program for alcohol or drug use?",,"Number of nights (out of 90)",integer,0,90,,[treatment_facility]='1',y,,,,,
+tx_recovery_nights,healthcare_utilization,,text,"U3b.  ...<i>nights</i> were you in a recovery housing program (also called sober living)?",,"Number of nights (out of 90)",integer,0,90,,[treatment_facility]='1',y,,,,,
+tx_mental_nights,healthcare_utilization,,text,"U3c.  ...<i>nights</i> were you in a residential treatment program for mental health?",,"Number of nights (out of 90)",integer,0,90,,[treatment_facility]='1',y,,,,,
+tx_physical_nights,healthcare_utilization,,text,"U3d.  ...<i>nights</i> were you in a residential, nursing home or other rehabilitation facility for your physical health?",,"Number of nights (out of 90)",integer,0,90,,[treatment_facility]='1',y,,,,,
+outpatient,healthcare_utilization,,radio,"U4.  During the past 90 days (OR during the 90 days prior to the start of your current detention), have you received any form of outpatient treatment? 
+
+(Probe: including for alcohol or drug use, or physical or mental health) ","1, Yes | 0, No",,,,,,,,,,,,
+primary_times,healthcare_utilization,,text,"U4a.  During the past 90 days (OR during the 90 days prior to the start of your current detention), how many <i>times</i> have you visited a primary care provider (physician, nurse, nurse practitioner, or physician's assistant)?",,"Number of times",integer,,,,[outpatient]='1',y,,,,,
+outpatient_header2,healthcare_utilization,,descriptive,"<div class=""green"">Other than times you already mentioned above, how many...",,,,,,,,,,,,,
+outpatient_days,healthcare_utilization,,text,"U4b.  ...<em>days</em> did you participate in any other outpatient treatment program specializing in alcohol or substance use?",,"Number of days (out of 90)",integer,0,90,,[outpatient]='1',y,,,,,
+psych_times,healthcare_utilization,,text,"U4c.  ...<i>times</i> have you seen a psychiatrist (MD) or psychologist (Ph.D., PsyD.)?",,"Number of times",integer,,,,,,,,,,
+counselor_times,healthcare_utilization,,text,"U4d.  ...<i>times</i> have you seen any other kind of counselor or social worker? ",,"Number of times",integer,,,,,,,,,,
+peernav_times,healthcare_utilization,,text,"U4e.  ...<i>times</i> have you seen a peer navigator or peer recovery navigator?",,"Number of times",integer,,,,,,,,,,
+step_times,healthcare_utilization,,text,"U4f.  ...<i>times</i> have you attended a 12 step or other peer support or mutual aid meeting?",,"Number of times",integer,,,,,,,,,,
+rewards_times,healthcare_utilization,,text,"U4g.  ...<i>times</i> have you received contingency management, motivational incentives, or rewards for achieving treatment goals?",,"Number of times",integer,,,,,,,,,,
+rewards_value,healthcare_utilization,,text,"U4g1.  Please estimate the total value of the incentives or rewards earned.",,Dollars,number,,,,[rewards_times]>0,,,,,,
+phone_times,healthcare_utilization,,text,"U4h.  ...<i>times</i> have you used a smartphone or other digital therapeutic?",,"Number of times",integer,,,,,,,,,,
+digital_ther_specify,healthcare_utilization,,text,"U4h1.  Please specify which digital therapeutic you used (e.g., DynamiCare, A-CHESS, Vorvida).",,,,,,,[phone_times]>'0',,,,,,
+detox_meds_yn,healthcare_utilization,,radio,"U5.  During the past 90 days (OR during the 90 days prior to the start of your current detention, have you received any medication to assist with detox or treatment?","1, Yes | 0, No",,,,,,,,,,,,
+detox_meds_primary,healthcare_utilization,,radio,"U5a.  Please specify your primary medication.  (Select one.)","1, Buprenorphine (e.g., Suboxone, Subutex, BRIXADI, Sublocade) | 2, Naltrexone (e.g., Vivitrol) | 3, Methadone | 4, GLP-1 | 5, Other (specify)  {detox_meds_primary_other}",,,,,,[detox_meds_yn]='1',,,,,,
+detox_meds_primary_other,healthcare_utilization,,text,"U5aother.  Specify other primary medication(s).",,,,,,,[detox_meds_primary]='5',,,,,,
+detox_meds_add,healthcare_utilization,,checkbox,"U5b.  Please specify any additional medication.  (Select all that apply.)","1, Buprenorphine (e.g., Suboxone, Subutex, BRIXADI, Sublocade) | 2, Naltrexone (e.g., Vivitrol) | 3, Methadone | 4, GLP-1 | 5, Other (specify)  {detox_meds_additional_other} | 6, None",,,,,,[detox_meds_yn]='1',,,,,," @NONEOFTHEABOVE='6'"
+detox_meds_add_other,healthcare_utilization,,text,"U5bother.  Specify other additional medication(s).",,,,,,,[detox_meds_add(5)]='1',,,,,,
+tx_meds_days,healthcare_utilization,,text,"U5c.  How many days did you take your primary medication for SUD treatment?
+
+(For ""injectable medication,"" enter number of days corresponding to intended duration (e.g., 2 week injection=14 days).)",,"Number of days",integer,,,,[detox_meds_yn]='1',,,,,,
+tx_additional_meds_days,healthcare_utilization,,text,"U5d.  How many days did you take your additional medication for SUD treatment?
+
+(For ""injectable medication,"" enter number of days corresponding to intended duration (e.g., 2 week injection=14 days).)",,"Number of days",integer,,,,"[detox_meds_yn]='1' and [detox_meds_add(6)]<>'1'",,,,,,
+mhealth_nointerest,resources_and_risk,"MENTAL HEALTH
+
+R1. Over the past 2 weeks, how often have you been bothered by any of the following problems?",radio,"R1a.  Little interest or pleasure in doing things","0, Not at all | 1, Several Days | 2, More than half the days | 3, Nearly Every Day",,,,,,,,,,mental_health,,
+mhealth_depressed,resources_and_risk,,radio,"R1b.  Feeling down, depressed or hopeless","0, Not at all | 1, Several Days | 2, More than half the days | 3, Nearly Every Day",,,,,,,,,,mental_health,,
+mhealth_nervous,resources_and_risk,,radio,"R1c.  Feeling nervous, anxious or on edge","0, Not at all | 1, Several Days | 2, More than half the days | 3, Nearly Every Day",,,,,,,,,,mental_health,,
+mhealth_worry,resources_and_risk,,radio,"R1d.  Not being able to stop or control worrying","0, Not at all | 1, Several Days | 2, More than half the days | 3, Nearly Every Day",,,,,,,,,,mental_health,,
+probs_header,resources_and_risk,,descriptive,"<div class=""blue"">The following questions are about common psychological, behavioral and personal problems.  These are considered significant when you have them for two or more weeks, when they keep coming back, when they keep you from meeting your responsibilities, or when they make you feel like you can't go on.",,,,,,,,,,,,,
+probs_trapped,resources_and_risk,"(OPTIONAL)
+
+R2.  When was the last time that you had significant problems with...",radio,"R2a.  ...feeling trapped, lonely, sad, blue, depressed, or hopeless about the future?","4, The past month | 3, 2 to 3 months ago | 2, 4 to12 months ago | 1, One or more years ago | 0, Never",,,,,,,,,,problems,,
+probs_sleep,resources_and_risk,,radio,"R2b.  ...sleep trouble, such as bad dreams, sleeping restlessly, or falling asleep during the day?","4, The past month | 3, 2 to 3 months ago | 2, 4 to12 months ago | 1, One or more years ago | 0, Never",,,,,,,,,,problems,,
+probs_anxious,resources_and_risk,,radio,"R2c.  ...feeling very anxious, nervous, tense, scared, panicked or like something bad was going to happen?","4, The past month | 3, 2 to 3 months ago | 2, 4 to12 months ago | 1, One or more years ago | 0, Never",,,,,,,,,,problems,,
+probs_past,resources_and_risk,,radio,"R2d.  ...becoming very distressed and upset when something reminded you of the past?","4, The past month | 3, 2 to 3 months ago | 2, 4 to12 months ago | 1, One or more years ago | 0, Never",,,,,,,,,,problems,,
+probs_suicide,resources_and_risk,,radio,"R2e.  ...thinking about ending your life or dying by suicide?","4, The past month | 3, 2 to 3 months ago | 2, 4 to12 months ago | 1, One or more years ago | 0, Never",,,,,,,,,,problems,,
+probs_seethings,resources_and_risk,,radio,"R2f.  ...seeing or hearing things that no one else could see or hear or feeling that someone else could read or control your thoughts?","4, The past month | 3, 2 to 3 months ago | 2, 4 to12 months ago | 1, One or more years ago | 0, Never",,,,,,,,,,problems,,
+behavior_lied,resources_and_risk,"(OPTIONAL)
+
+R3. When was the last time that you did the following things two or more times?",radio,"R3a.  Lied or conned to get things you wanted or to avoid having to do","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+behavior_attention,resources_and_risk,,radio,"R3b.  Had a hard time paying attention at school, work or home.","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+behavior_listening,resources_and_risk,,radio,"R3c.  Had a hard time listening to instructions at school, work or home","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+behavior_waiting,resources_and_risk,,radio,"R3d.  Had a hard time waiting for your turn","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+behavior_bully,resources_and_risk,,radio,"R3e.  Were a bully or threatened other people","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+behavior_fights,resources_and_risk,,radio,"R3f.  Started physical fights with other people","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+behavior_gambling,resources_and_risk,,radio,"R3g.  Tried to win back your gambling losses by going back another day","4, The past month | 3, 2 to 3 months ago | 2, 4 to 12 months ago | 1, 1 or more years ago | 0, Never",,,,,,,,,,behavior,,
+condition_dx,resources_and_risk,,checkbox,"R4.  Have you ever been diagnosed by a medical professional with any of the following medical conditions?  (Select all that apply.)
+
+(OPTIONAL)
+","1, Major depression | 2, Severe anxiety disorder | 3, Bipolar disorder | 4, Post-traumatic stress disorder (aka PTSD), | 5, Schizophrenia, | 6, Borderline personality disorder",,,,,,,,,,,,
+propr_header,resources_and_risk,,descriptive,"<div class=""blue"">Health-Related Quality of Life (PROPr)
+
+Health-related quality of life (HRQoL) is recommended as a core measure of recovery by the National Academy of Sciences, and is highly prioritized by individuals with lived experience of SUD.  Of particular importance is a comprehensive HRQoL measure that extends beyond basic physical health.  The PROPr is comprised of PROMIS measures, which were developed through a major NIH initiative to provide standardized assessments of functioning over eight essential domains (anxiety, cognitive functioning, depression, fatigue, sleep, pain, physical functioning, social functioning).  The PROPr also produces a preference-based composite score used to calculate quality-adjusted life-years (QALYs) -- the gold standard for cost-effectiveness analysis (CEA), and a core metric recommended by NIH to harmonize with existing HEAL- and NIDA-funded studies.",,,,,,,,,,,,,
+propr_vigorous,resources_and_risk,"Quality of life is an important part of recovery.  This section asks about eight key areas of well-being, including mood, thinking, sleep, pain, physical functioning, and social functioning, to provide a more complete picture of your health.",radio,"R5a.  In the past 7 days, has your health limited you in doing vigorous activities, such as running, lifting heavy objects, or participating in strenuous sports?
+
+[Additional clarification to interviewer: If they haven't had the opportunity to engage in vigorous activities, ask ""Could you if you tried?""]","1, Never | 2, Rarely | 3, Sometimes | 4, Often | 5, Always | 6, Unable to do due to disability",,,,,,,,,,,,
+propr_worries,resources_and_risk,,radio,"R5b.  In the past 7 days, my worries overwhelmed me.","1, Never | 2, Rarely | 3, Sometimes | 4, Often | 5, Always",,,,,,,,,,,,
+propr_hopeless,resources_and_risk,,radio,"R5c.  In the past 7 days, I felt hopeless.","1, Never | 2, Rarely | 3, Sometimes | 4, Often | 5, Always",,,,,,,,,,,,
+propr_tired,resources_and_risk,,radio,"R5d.  In the past 7 days, I felt (tired) or fatigued.","1, Never | 2, Rarely | 3, Sometimes | 4, Often | 5, Always",,,,,,,,,,,,
+propr_sleep,resources_and_risk,,radio,"R5e.  In the past 7 days, my sleep quality was:","1, Very poor | 2, Poor | 3, Fair | 4, Good | 5, Very good",,,,,,,,,,,,
+propr_friends,resources_and_risk,,radio,"R5f.  In the past 7 days, I had trouble doing all of the activities with friends that I wanted to do.","1, Never | 2, Rarely | 3, Sometimes | 4, Usually | 5, Always",,,,,,,,,,,,
+propr_concentrate,resources_and_risk,,radio,"R5g.  In the past 7 days, I have been able to concentrate.","1, Not at all | 2, A little bit | 3, Somewhat | 4, Quite a bit | 5, Very much",,,,,,,,,,,,
+propr_pain,resources_and_risk,,radio,"R5h.  In the past 7 days, how much did pain interfere with your day to day activities?","1, Not at all | 2, A little bit | 3, Somewhat | 4, Quite a bit | 5, Very much",,,,,,,,,,,,
+pain_pastweek,resources_and_risk,PAIN,slider,"R6a.  What number best describes your pain on average in the past week?","0  No pain |  | 10  Pain as bad as you can imagine",,number,,10,,,,RH,,,,
+pain_enjoyment,resources_and_risk,,slider,"R6b.  What number best describes how, during the past week, pain has interfered with your enjoyment of life? ","0  Does not interfere |  | 10  Completely interferes",,number,,10,,,,RH,,,,
+pain_activity,resources_and_risk,,slider,"R6c.  What number best describes how, during the past week, pain has interfered with your general activity?","0  Does not interfere |  | 10  Completely interferes",,number,,10,,,,RH,,,,
+needs_genmed,resources_and_risk,"PARTICIPANT NEEDS ASSESSMENT:  MEDICAL/HEALTH NEEDS
+
+For studies conducted with individuals who are detained, each hub may determine whether to assess (1) need prior to detainment, (2) current need while detained, or (3) anticipated need upon re-entry.  Different stems and response options are provided for each situation.
+
+Introduction: ""We are going to ask about different health and social needs. The purpose of these questions is to better understand people's experiences. This study does not automatically provide a connection or referral to services based on your answers.""
+
+Additional stem depending on which of the three options selected above
+1.	""For each service, please let us know whether you needed it at the time you entered jail/prison.""
+2.	""For each service, please let us know whether you need it now, during your time in jail/prison.""
+3.	""For each service, please let us know whether you will need it after your release, when you return to the community.""
+
+(OPTIONAL)",radio,"R7.  Do you need general medical care (primary care or specialty care)?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_vision,resources_and_risk,,radio,"R8.  Do you need vision care?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_dental,resources_and_risk,,radio,"R9.  Do you need dental care?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_insurance,resources_and_risk,,radio,"R10.  Do you need help getting or maintaining health insurance coverage?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_hepc,resources_and_risk,,radio,"R11.  Do you need Hepatitis C testing or treatment?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_hivcare,resources_and_risk,,radio,"R12.  Do you need HIV care or antiretroviral therapy (ART)?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_mhealth,resources_and_risk,,radio,"R13.  Do you need mental health care or counseling services?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_narcan,resources_and_risk,,radio,"R14.  Do you need naloxone or support for overdose prevention?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_moud,resources_and_risk,,radio,"R15.  Do you need treatment for opioid use disorder, including medications for opioid use disorder (MOUD)?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_stimulant,resources_and_risk,,radio,"R16.  Do you need treatment or services for stimulant use disorder?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_alcohol,resources_and_risk,,radio,"R17.  Do you need services for alcohol use disorder?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_othersubs,resources_and_risk,,radio,"R18.  Do you need treatment for the use of substances other than opioids, stimulants, or alcohol?  (If yes, specify below.)","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_syringe,resources_and_risk,,radio,"R19.  Do you need syringe services or overdose reduction supplies?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_prep,resources_and_risk,,radio,"R20.  Do you need pre-exposure prophylaxis (PrEP), a daily medication that helps prevent HIV?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_sti,resources_and_risk,,radio,"R21.  Do you need testing or treatment for sexually transmitted infections (STIs)?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_other,resources_and_risk,,radio,"R22.  Do you have any other medical or health needs not listed above?  (If yes, specify below.)","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_medical,,
+needs_moud_med_yn,resources_and_risk,,radio,"R15a.  If you need treatment for opioid use disorder, including medications for opioid use disorder (MOUD), are you interested in a specific medication?","1, Yes | 0, No",,,,,,[needs_moud]='1',,,,,,
+needs_moud_med_specify,resources_and_risk,,text,"R15aspecify.  Specify the medication(s) you are interested in.",,,,,,,[needs_moud_med_yn]='1',,,,,,
+needs_othersubs_specify,resources_and_risk,,text,"R18a.  Which substances do you need treatment for?",,,,,,,[needs_othersubs]='1',,RH,,,,
+needs_other_specify,resources_and_risk,,text,"R22a.  Describe other medical or health needs not listed above.",,,,,,,[needs_other]='1',,RH,,,,
+needs_id,resources_and_risk,"PARTICIPANT NEEDS ASSESSMENT:  SOCIAL/SOCIO-ECONOMIC NEEDS
+
+(OPTIONAL)",radio,"R23.  Do you need help obtaining identification or documentation (such as an ID or birth certificate)?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_childcare,resources_and_risk,,radio,"R24.  Do you need childcare support?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_communication,resources_and_risk,,radio,"R25.  Do you need help with communication access (such as a phone or phone service)?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_employment,resources_and_risk,,radio,"R26.  Do you need employment or workforce support?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_financial,resources_and_risk,,radio,"R27.  Do you need financial benefits or income assistance?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_food,resources_and_risk,,radio,"R28.  Do you need help accessing food or are you experiencing food insecurity?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_housing,resources_and_risk,,radio,"R29.  Do you need housing or support with housing stability?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_legal,resources_and_risk,,radio,"R30.  Do you need legal assistance?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_recovery,resources_and_risk,,radio,"R31.  Do you need recovery support services such as peer support, recovery coaching, or Alcoholics or Narcotics Anonymous?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_family,resources_and_risk,,radio,"R32.  Do you need family support?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_safety,resources_and_risk,,radio,"R33.  Do you have concerns about your personal safety?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_transportation,resources_and_risk,,radio,"R34.  Do you need transportation assistance?","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_social_other,resources_and_risk,,radio,"R35.  Do you have any other social or economic needs not listed above?  (specify below)","1, Yes | 0, No | 2, Unsure",,,,,,,,,,needs_socioeconomic,,
+needs_social_other_specify,resources_and_risk,,text,"R35a.  Describe other social or economic needs not listed above.",,,,,,,[needs_social_other]='1',,RH,,,,
+child_welfare_opencase,resources_and_risk,"CHILD WELFARE",radio,"R36. Do you currently have an open child welfare or services case?
+
+(OPTIONAL)","1, Yes | 0, No | 2, I don't know",,,,,,,,,,,,
+child_welfare_custody,resources_and_risk,"CHILD WELFARE
+
+(OPTIONAL)",radio,"R37.  Do/did you have custody of your child(ren) before your current/ever legal involvement/contact?","1, Yes | 0, No | 2, Yes for some but not all | 3, I don't know",,,,,,,,,,child_welfare,,
+child_welfare_nocustody,resources_and_risk,,radio,"R38.  Have your child(ren) been moved to someone else's custody or official care during your current legal involvement?","1, Yes | 0, No | 2, Yes for some but not all | 3, I don't know",,,,,,,,,,child_welfare,,
+child_welfare_return,resources_and_risk,,radio,"R39.  Have your child(ren) been returned to your custody or official care during your current legal involvement?","1, Yes | 0, No | 2, Yes for some but not all | 3, I don't know",,,,,,,,,,child_welfare,,
+debt_owe,resources_and_risk,"LEGAL DEBT",radio,"R40.  Do you currently owe any money related to a criminal or court case?
+
+(This can include things like fines, court fees, supervision or probation costs, drug testing fees, treatment costs ordered by the court, public defender fees, or other monthly payments related to your case.)
+
+(OPTIONAL)
+","1, Yes, I currently owe money related to a case. | 2, I paid it off or never owed any money related to a case. | 3, I'm not sure",,,,,,,,,,,,
+debt_problems,resources_and_risk,,radio,"R41.  Has owing money related to a court case caused problems for you?
+
+(For example: license suspension, warrants, probation violations, trouble finding housing or employment, or other problems.) 
+
+(OPTIONAL)
+","1, Yes | 0, No | 2, I'm not sure",,,,,,,,,,,,
+debt_problems_specify,resources_and_risk,,checkbox,"R41a.  What kinds of problems has it caused?  (Select all that apply.)
+
+(OPTIONAL)
+","1, Driver's license suspended | 2, Warrant issued | 3, Trouble with probation/parole | 4, Re-incarceration or jail time | 5, Trouble finding housing | 6, Trouble finding or keecoping a job | 7, Trouble affording basic necessities (food, toiletries) | 8, Other (specify)  {debt_problems_other}",,,,,,,,,,,,
+debt_problems_other,resources_and_risk,,text,"R41aother.  Specify what kinds of other problems.",,,,,,,[debt_problems_specify(8)]='1',,,,,,
+debt_dollars,resources_and_risk,,radio,"R42.  About how much money do you currently owe related to your case(s)?  Your best guess is fine.","1, Less than $100 | 2, $100-$499 | 3, $500-$999 | 4, $1,000-$4,999 | 5, $5,000-$9,999 | 6, $10,000 or more | 7, I'm not sure how much I owe",,,,,,,,,,,,
+grantee_number,metadata,,text,"M1.  Grantee grant number from NIDA (will be recoded in shared data)",,,,,,,,,,,,," @DEFAULT='12345'"
+grantee_subsite_number,metadata,,text,"M2.  If applicable, subsite number within the grant; otherwise, use 1 (main site)",,,,,,,,,,,,,
+enrollment_date,metadata,,text,"M3.  Date of study enrollment (e.g., date of consent)",,MM-DD-YYYY,date_mdy,,,,,,,,,,
+enrollment_quarter,metadata,,text,"M4.  Financial quarter and year in which participant was enrolled.",,,,,,,,,,,,,
+enrollment_month,metadata,,dropdown,"M5.  Month in which participant was enrolled","1, January | 2, February | 3, March | 4, April | 5, May | 6, June | 7, July | 8, August | 9, September | 10, October | 11, November | 12, December",,,,,,,,,,,,
+enrollment_state,metadata,,dropdown,"M6.  U.S. state of the site where participant was initially enrolled","AL, Alabama | AK, Alaska | AZ, Arizona | AR, Arkansas | CA, California | CO, Colorado | CT, Connecticut | DC, Washington, D.C. | DE, Delaware | FL, Florida | GA, Georgia | HI, Hawaii | ID, Idaho | IL, Illinois | IN, Indiana | IA, Iowa | KS, Kansas | KY, Kentucky | LA, Louisiana | ME, Maine | MD, Maryland | MA, Massachusetts | MI, Michigan | MN, Minnesota | MS, Mississippi | MO, Missouri | MT, Montana | NE, Nebraska | NV, Nevada | NH, New Hampshire | NJ, New Jersey | NM, New Mexico | NY, New York | NC, North Carolina | ND, North Dakota | OH, Ohio | OK, Oklahoma | OR, Oregon | PA, Pennsylvania | RI, Rhode Island | SC, South Carolina | SD, South Dakota | TN, Tennessee | TX, Texas | UT, Utah | VT, Vermont | VA, Virginia | WA, Washington | WV, West Virginia | WI, Wisconsin | WY, Wyoming",,,,,,,,,,,,
+intake_date,metadata,,text,"M7.  Incarceration intake date:  For use if recruiting in detention, jail, or prison; otherwise, mark as not applicable (i.e., legitimately skipped).",,MM-DD-YYYY,date_mdy,,,,,,,,,,
+release_date,metadata,,text,"M8.  Incarceration release date:  For use if recruiting in detention, jail, or prison; otherwise, mark as not applicable (i.e., legitimately skipped).",,MM-DD-YYYY,date_mdy,,,,,,,,,,
+study_status,metadata,,radio,"M9.  Current status of study participant","1, On study | 2, Dropped out / Lost to follow up | 3, Withdrawn by investigator | 4, Re-incarcerated | 5, Deceased | 6, Completed study",,,,,,,,,,,,
+onstudy_days,metadata,,text,"M10.  Days on study:  Number of days participant spent on study following enrollment; for those still on study, number of days from enrollment to current date",,"Number of days",integer,,,,,,,,,,
+treatment_arm,metadata,,radio,"M11.  Treatment arm to which participant was randomized (hub specific)","1, List hub-specific treatment arms here. | 2, List hub-specific treatment arms here.",,,,,,,,,,,,
+compliance,metadata,,text,"M12.  Compliance:  Quantity of treatment received (defined locally)",,,,,,,,,,,,,
+compliance_unit,metadata,,text,"M13.  Compliance unit (defined locally)",,,,,,,,,,,,,
+compliance_max,metadata,,text,"M14.  Maximum possible value of compliance according to study protocol (defined locally)",,,,,,,,,,,,,
+interview_number,metadata,,text,"M15.  Interview number:  Sequential number corresponding to each sequentially-planned interview (e.g., ""Baseline"" = 1, ""Three months"" = 2, ""Six months"" = 3, etc.), regardless of the number of months between",,,,,,,,,,,,,
+interview_month,metadata,,text,"M16.  Intended interview timepoint in months since random assignment (e.g., ""Baseline,"" ""3 month,"" ""6 month,"" etc.)",,,,,,,,,,,,,
+shifted_interview_date,metadata,,text,"M17.  Date of interview (shifted for de-identification)",,,date_mdy,,,,,,,,,,
+admin_site,metadata,,radio,"M18.  Interview context","1, Jail/prison | 2, Home | 3, Treatment site | 4, Research office | 5, Other (specify)  {admin_site_other}",,,,,,,,,,,,
+admin_site_other,metadata,,text,"M18a.  Describe other interview site.",,,,,,,[admin_site]='5',,,,,,
+admin_method,metadata,,radio,"M19.  Administration method:  How were the questions administered?","1, Self-administered | 2, Orally administered by staff | 3, Orally administered by others | 4, Administered some other way (describe)  {admin_method_other}",,,,,,,,,,,,
+admin_method_other,metadata,,text,"M19a.  Describe other interview method.",,,,,,,[admin_method]='4',,,,,,
+admin_mode,metadata,,radio,"M20.  Administration mode:  What was the mode of administration?","1, Pen and paper | 2, Computer | 3, Telephone | 4, Zoom/Teams | 5, Other (describe)  {admin_mode_other}",,,,,,,,,,,,
+admin_mode_other,metadata,,text,"M20a.  Describe other administration mode.",,,,,,,[admin_mode]='5',,,,,,
+zipcode_site,metadata,,text,"M21.  Site ZIP code",,,zipcode,,,,,,,,,,
