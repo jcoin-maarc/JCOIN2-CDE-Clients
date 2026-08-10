@@ -18,3 +18,5 @@ The repository includes the following resources for Baseline Client CDEs:
 Historic (archived) versions of these documents can be requested from MAARC by [submitting a TA request](https://www.jcoinctc.org/tta/).
 
 Please direct all questions or assistance requests regarding JCOIN 2.0 data collection or harmonization to [JCOIN MAARC](https://www.jcoinctc.org/tta/).
+
+Sign up for an Office Hours slot with the MAARC Data Core [here](https://docs.google.com/spreadsheets/d/1cWn9DsSyMOc81dGFFtFlGULfPXuUw19LxmDzAgbs2Zc/edit?gid=0#gid=0).
