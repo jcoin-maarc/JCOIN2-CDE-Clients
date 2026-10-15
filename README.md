@@ -4,10 +4,10 @@ This repository contains the most up-to-date JCOIN 2.0 Client CDE resources.
 
 Each update to the CDE resources is tracked with a version and date stamp along with a document that provides an outline of changes introduced in each version and instructions on implementing these changes at the hub level.
 
-## Resources: Baseline Client CDEs
-The repository includes the following resources for Baseline Client CDEs:
+## Resources: Client CDEs (Baseline and Follow-up)
+The repository includes the following resources for Client CDEs:
 
-- **Formatted user-friendly reference document**: jcoin2_client_cde_items_baseline_<version_date>.pdf
+- **Formatted user-friendly reference document**: jcoin2_client_cde_items_<version_date>.pdf
 - **REDCap project user protocol / guidelines**: jcoin2_client_cde_redcap_protocol_<version_date>.pdf
 - **REDCap codebook**: jcoin2_client_cde_redcap_codebook_<version_date>.pdf
 - **REDCap data dictionary**: MAARCJCOIN20ClientCDEs_DataDictionary_<version_date>.csv
